@@ -76,12 +76,6 @@ const Home: React.FC = () => {
       icon: <Package className="w-8 h-8" />
     },
     {
-      title: 'Chat with Support',
-      description: 'Get instant help from our AI assistant or connect with a human technician',
-      link: '/support',
-      icon: <FileText className="w-8 h-8" />
-    },
-    {
       title: 'Read Reviews',
       description: 'See what our customers say about our fast, reliable repair services',
       link: '/reviews',
@@ -162,13 +156,6 @@ const Home: React.FC = () => {
                 VIEW PRICING
               </Link>
               
-              <Link
-                to="/support"
-                className="btn-ghost"
-                style={{ textDecoration: 'none', fontWeight: '600' }}
-              >
-                CHAT WITH SUPPORT
-              </Link>
             </div>
           </div>
 
