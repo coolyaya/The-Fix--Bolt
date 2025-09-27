@@ -9,27 +9,27 @@ const Locations: React.FC = () => {
   const locations = [
     {
       id: 1,
-      name: 'TheFix West Melbourne',
-      address: '123 Main Street, West Melbourne, FL 32904',
-      phone: '(321) 555-0123',
-      hours: 'Mon-Fri: 9AM-7PM, Sat: 10AM-6PM, Sun: 12PM-5PM',
-      coordinates: { lat: 28.0836, lng: -80.6081 }
+      name: 'Walmart West Melbourne',
+      address: '845 Palm Bay Rd NE, West Melbourne, FL 32904',
+      phone: '(321) 236-3644',
+      hours: 'Daily: 10AM-8PM',
+      coordinates: { lat: 28.0353419, lng: -80.6510174 }
     },
     {
       id: 2,
-      name: 'TheFix Downtown',
-      address: '456 Central Ave, Melbourne, FL 32901',
-      phone: '(321) 555-0456',
-      hours: 'Mon-Fri: 8AM-8PM, Sat: 9AM-7PM, Sun: 11AM-6PM',
-      coordinates: { lat: 28.0836, lng: -80.6081 }
+      name: 'Walmart Orlando',
+      address: '11250 E Colonial Dr, Orlando, FL 32817',
+      phone: '(407) 810-5997',
+      hours: 'Daily: 10AM-8PM',
+      coordinates: { lat: 28.5659297, lng: -81.2177891 }
     },
     {
       id: 3,
-      name: 'TheFix Beachside',
-      address: '789 Ocean Drive, Satellite Beach, FL 32937',
-      phone: '(321) 555-0789',
-      hours: 'Mon-Fri: 10AM-6PM, Sat: 10AM-5PM, Sun: Closed',
-      coordinates: { lat: 28.1761, lng: -80.5900 }
+      name: 'Walmart Casselberry',
+      address: '1239 State Road 436 Ste 101, Casselberry, FL 32707',
+      phone: '(321) 393-5398',
+      hours: 'Daily: 10AM-8PM',
+      coordinates: { lat: 28.6351412, lng: -81.323328 }
     }
   ];
 
@@ -203,4 +203,5 @@ const Locations: React.FC = () => {
 };
 
 export default Locations;
+
 
