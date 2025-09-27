@@ -35,24 +35,24 @@ const Locations: React.FC = () => {
 
   const images = [
     {
-      src: 'https://images.pexels.com/photos/1482476/pexels-photo-1482476.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Modern repair equipment and workspace',
-      category: 'Workshop'
+      src: '/images/The Fix 1.webp',
+      caption: 'Team member ready to help at the accessories counter',
+      category: 'Team'
     },
     {
-      src: 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Quality parts inventory and tools',
-      category: 'Equipment'
-    },
-    {
-      src: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Clean, professional storefront',
+      src: '/images/The Fix 2.webp',
+      caption: 'Storefront entrance for The FIX Tech Repair',
       category: 'Storefront'
     },
     {
-      src: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Customer service area',
-      category: 'Interior'
+      src: '/images/The Fix 3.webp',
+      caption: 'Technician installing a screen protector for a customer',
+      category: 'Repairs'
+    },
+    {
+      src: '/images/The Fix 4.webp',
+      caption: 'Wall of phone cases and accessories inside the shop',
+      category: 'Accessories'
     }
   ];
 
@@ -203,3 +203,4 @@ const Locations: React.FC = () => {
 };
 
 export default Locations;
+
