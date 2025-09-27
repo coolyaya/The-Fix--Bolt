@@ -1,0 +1,643 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* CSS Variables for consistent theming */
+:root {
+  --container-max: 1200px;
+  --header-h: 72px;
+  --gap-lg: 28px;     /* desktop tab gap */
+  --gap-md: 22px;     /* mid width */
+  --gap-sm: 16px;     /* tighter */
+
+  --bg: #FFFFFF;
+  --text: #0D0F14;
+  --muted: rgba(13,15,20,.80);
+  --border: rgba(13,15,20,.12);
+  --shadow-lg: 0 10px 28px rgba(13,15,20,.07);
+
+  /* Accents with more pink weight */
+  --accent-blue: #59A0FF;
+  --accent-violet: #7B5BFF;
+  --accent-pink: #FF4FA8;
+  --accent-pink-2: #FF7EC2;
+
+  /* Heavily pink-biased gradient (60% pink) */
+  --accent-gradient: linear-gradient(90deg,
+    var(--accent-violet) 0%,
+    var(--accent-pink) 40%,
+    var(--accent-pink-2) 85%,
+    var(--accent-blue) 100%
+  );
+
+  /* Very light pink tints (for chips/backgrounds) */
+  --pink-tint-1: #FFF5FA;
+  --pink-tint-2: #FFEAF4;
+  --pink-stroke: #FFD1E7;
+}
+
+/* GLOBAL "CARD = WHITE" NORMALIZATION */
+.card, .feature-card, .info-card, .support-card, .pricing-card,
+.review-card, .sidebar-card, .list-card, .panel, .tile, .box,
+.feature-block {
+  background: #FFFFFF !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-lg) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Kill gray overlays and pseudo elements that dim cards */
+.card::before, .card::after,
+.feature-card::before, .feature-card::after,
+.info-card::before, .info-card::after,
+.support-card::before, .support-card::after,
+.pricing-card::before, .pricing-card::after,
+.sidebar-card::before, .sidebar-card::after,
+.panel::before, .panel::after, .tile::before, .tile::after, .box::before, .box::after,
+.feature-block::before, .feature-block::after {
+  content: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* Remove legacy "dim/ghost" variants */
+.card.dim, .card[data-dim="true"], .card.is-dim,
+.feature-card.dim, .info-card.dim, .panel.dim, .feature-block.dim {
+  background: #FFFFFF !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Remove theme classes that force gray backgrounds */
+[class*="bg-gray"], .bg-muted, .bg-neutral, .bg-surface,
+.surface--muted, .surface--elevated-gray, [class*="bg-black"] {
+  background: #FFFFFF !important;
+  color: var(--text) !important;
+}
+
+/* Global container class */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0B0E12;
+}
+
+p {
+  color: #2B2F36;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(13,15,20,.28);
+  text-underline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: #fff;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px var(--border), 0 10px 20px rgba(13,15,20,.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px var(--border), 0 14px 28px rgba(13,15,20,.18);
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--pink-stroke);
+  border-radius: 999px;
+  padding: 14px 22px;
+  box-shadow: 0 2px 8px rgba(13,15,20,.04);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--pink-tint-2);
+  border-color: var(--accent-pink);
+}
+
+.btn-ghost {
+  background: var(--pink-tint-1);
+  color: var(--text);
+  border: 1px solid var(--pink-stroke);
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  background: var(--pink-tint-2);
+  border-color: var(--accent-pink);
+}
+
+/* Gradient text utility for small splashes in headings */
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Pink underline utility for headings or section labels */
+.underline-accent {
+  position: relative;
+}
+.underline-accent::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 84px;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  opacity: .95;
+}
+
+/* Page titles - bigger and more consistent */
+.page-title, .tab-title, .section-header h1 {
+  font-size: clamp(38px, 6.4vw, 68px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.6px;
+  margin-bottom: clamp(20px, 4vh, 40px);
+  color: #0D0F14;
+}
+
+/* Page subtitles */
+.page-subtitle {
+  font-size: clamp(18px, 2.6vw, 22px);
+  font-weight: 500;
+  color: rgba(13,15,20,.75);
+  margin-bottom: clamp(14px, 2.4vh, 24px);
+}
+
+/* ALL cards are now WHITE with high contrast text */
+.card, .feature-card, .info-card, .support-card, .pricing-card, .review-card, .list-card, .feature-block {
+  background: #FFFFFF;
+  color: #0D0F14;
+  border: 1px solid rgba(13,15,20,.12);
+  border-radius: 16px;
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card headings and body text */
+.card h3, .feature-card h3, .info-card h3, .pricing-card h3, .support-card h3, .review-card h3, .feature-block h3 {
+  color: var(--text) !important;
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.card p, .feature-card p, .info-card p, .pricing-card p, .support-card p, .review-card p, .feature-block p {
+  color: var(--muted) !important;
+  font-size: clamp(14px, 2.1vw, 18px);
+  line-height: 1.5;
+}
+
+/* Icons / chips inside white cards use pink accents */
+.card .icon, .feature-card .icon, .info-card .icon, .support-card .icon, .feature-block .icon {
+  background: var(--pink-tint-1);
+  border: 1px solid var(--pink-stroke);
+  color: var(--accent-pink);
+  border-radius: 10px;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+/* Links / learn more */
+.card a, .feature-card a, .info-card a, .support-card a, .feature-block a {
+  color: var(--accent-pink);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.card a:hover, .feature-card a:hover, .info-card a:hover, .support-card a:hover, .feature-block a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent-pink);
+}
+
+/* Hover lift – subtle, professional */
+.card:hover, .feature-card:hover, .info-card:hover, .support-card:hover, .feature-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(13,15,20,.12);
+}
+
+/* Light pink chips and badges */
+.badge--pink, .chip--pink {
+  background: var(--pink-tint-1);
+  color: var(--text) !important;
+  border: 1px solid var(--pink-stroke);
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+/* Section dividers with a pink gradient hairline */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+  opacity: .65;
+  margin: 2rem 0;
+}
+
+/* Links and micro-UI with pink accents */
+.link-accent {
+  color: var(--accent-pink);
+}
+
+.link-accent:hover {
+  text-decoration-color: var(--accent-pink);
+}
+
+a.learn, .link-accent {
+  color: var(--accent-pink);
+  transition: color 0.2s;
+}
+
+a.learn:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent-pink);
+}
+
+/* Icon strokes/fills get a subtle pink gradient */
+.icon--accent {
+  background: var(--pink-tint-1);
+  border: 1px solid var(--pink-stroke);
+  color: var(--accent-pink);
+  border-radius: 10px;
+  padding: 8px;
+  transition: all 0.2s;
+}
+
+.icon--accent:hover {
+  background: var(--pink-tint-2);
+  border-color: var(--accent-pink);
+}
+
+/* Focus ring in pink */
+:focus-visible {
+  outline: 3px solid var(--accent-pink);
+  outline-offset: 3px;
+}
+
+/* Active tab indicator with gradient */
+.active-tab::after {
+  content: "";
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  margin-top: 6px;
+  background-image: var(--accent-gradient);
+  opacity: .95;
+}
+
+/* Star color slightly pinkish */
+.star {
+  color: #FF66B3;
+}
+
+/* Callout blocks use a pink-tinted background */
+.callout--pink {
+  background: var(--pink-tint-1);
+  border: 1px solid var(--pink-stroke);
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+/* Form fields inside white cards */
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  background: #FFFFFF;
+  color: var(--text) !important;
+  border: 1px solid rgba(13,15,20,.18);
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  font-size: 16px;
+  box-shadow: inset 0 1px 2px rgba(13,15,20,.03);
+}
+
+select { 
+  appearance: none; 
+  background-image: none; 
+}
+
+textarea { 
+  min-height: 140px; 
+  resize: vertical; 
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(13,15,20,.45) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 3px solid var(--accent-pink) !important;
+  outline-offset: 2px !important;
+  border-color: var(--accent-pink) !important;
+  background: #fff !important;
+}
+
+/* Radios / checkboxes visible on white */
+input[type="radio"], input[type="checkbox"] {
+  accent-color: var(--accent-pink);
+}
+
+/* Submit button contrast on white */
+button[type="submit"], .btn-primary {
+  background: var(--text);
+  color: #FFFFFF;
+  border-radius: 999px;
+  padding: 14px 22px;
+  box-shadow: 0 10px 20px rgba(13,15,20,.12);
+}
+
+button[type="submit"]:hover { 
+  transform: translateY(-1px); 
+}
+
+/* Helper text under forms */
+.form-help { 
+  color: var(--muted); 
+}
+
+/* Hero section - ensure no clipping */
+.hero {
+  padding-block: clamp(44px, 8vh, 96px);
+  overflow: visible;
+  isolation: isolate;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-art {
+  justify-self: end;
+  width: min(24vw, 280px);
+  aspect-ratio: 260 / 520;
+  position: relative;
+}
+
+/* Flipper wrapper sits under H1 */
+.hero .flipper-row {
+  display: flex;
+  align-items: baseline;
+  gap: .4ch;
+  margin-bottom: clamp(10px, 2vh, 16px);
+  overflow: visible;
+}
+
+/* "We repair" label */
+.hero .flipper-label {
+  font-size: clamp(20px, 3.4vw, 34px);
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* The animated word container - fixed clipping issues */
+.word-flip {
+  display: inline-grid;
+  align-items: center;
+  line-height: 1;
+  height: 1.2em;
+  padding-block: 0.15em;
+  overflow: visible;
+  perspective: 900px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  font-weight: 800;
+  font-size: clamp(24px, 4.6vw, 44px);
+  color: var(--accent-pink);
+  text-shadow: 0 1px 0 #fff;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Phone animation styles */
+:root {
+  --float-y: 10px;
+  --tilt: 3deg;
+}
+
+.phone-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: 50% 50%;
+  animation: floatY 4.5s ease-in-out infinite;
+  will-change: transform;
+  filter: drop-shadow(0 30px 30px rgba(13,15,20,.10));
+}
+
+/* glow pulse on cracks */
+.cracks {
+  animation: crackPulse 2.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes crackPulse {
+  0%, 100% { opacity: .9; }
+  50% { opacity: 1; }
+}
+
+/* shards drift */
+.shards polygon:nth-child(1) {
+  animation: shardDrift1 6s ease-in-out infinite;
+  transform-origin: 160px 305px;
+}
+
+.shards polygon:nth-child(2) {
+  animation: shardDrift2 7s ease-in-out infinite;
+  transform-origin: 100px 252px;
+}
+
+.shards polygon:nth-child(3) {
+  animation: shardDrift3 5.5s ease-in-out infinite;
+  transform-origin: 180px 192px;
+}
+
+@keyframes shardDrift1 {
+  0%, 100% { transform: translate(0,0) rotate(0deg); opacity: .92; }
+  50% { transform: translate(3px,-4px) rotate(-6deg); opacity: 1; }
+}
+
+@keyframes shardDrift2 {
+  0%, 100% { transform: translate(0,0) rotate(0deg); opacity: .85; }
+  50% { transform: translate(-4px,3px) rotate(7deg); opacity: 1; }
+}
+
+@keyframes shardDrift3 {
+  0%, 100% { transform: translate(0,0) rotate(0deg); opacity: .9; }
+  50% { transform: translate(2px,-3px) rotate(-4deg); opacity: 1; }
+}
+
+/* float/bob */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--float-y) * -1)); }
+}
+
+/* Mobile & tablet adjustments */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-art {
+    width: min(40vw, 240px);
+    justify-self: start;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-art {
+    display: none;
+  }
+  
+  .cta-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+}
+
+/* Animation phases */
+.word-flip[data-phase="enter"] {
+  transform-origin: top center;
+  transform: rotateX(-88deg) translateZ(0);
+  opacity: 0;
+  transition: transform .28s cubic-bezier(.2,.7,.2,1), opacity .28s;
+}
+
+.word-flip[data-phase="hold"] {
+  transform-origin: top center;
+  transform: rotateX(0deg) translateZ(0);
+  opacity: 1;
+  transition: transform .28s cubic-bezier(.2,.7,.2,1), opacity .28s;
+}
+
+.word-flip[data-phase="exit"] {
+  transform-origin: bottom center;
+  transform: rotateX(88deg) translateZ(0);
+  opacity: 0;
+  transition: transform .28s cubic-bezier(.2,.7,.2,1), opacity .28s;
+}
+
+/* Feature grid layouts */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: clamp(16px, 3vw, 24px);
+}
+
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .page-title {
+    font-size: clamp(28px, 8vw, 44px);
+  }
+}
+
+/* Subtle page background tints (non-intrusive) */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .10;
+}
+
+body::before {
+  background: radial-gradient(closest-side, rgba(255,79,168,.16), transparent 70%);
+  top: -15vmax;
+  right: -10vmax;
+}
+
+body::after {
+  background: radial-gradient(closest-side, rgba(123,91,255,.12), transparent 70%);
+  bottom: -20vmax;
+  left: -15vmax;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .word-flip {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .phone-svg,
+  .cracks,
+  .shards polygon {
+    animation: none !important;
+  }
+  
+  body::before, body::after {
+    display: none;
+  }
+  
+  .page-title { 
+    font-size: clamp(28px, 8vw, 44px); 
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
